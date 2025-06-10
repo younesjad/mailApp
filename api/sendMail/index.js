@@ -4,17 +4,17 @@ module.exports = async function (context, req) {
   const { to, message } = req.body;
 
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT),
+    host: "smtp.gmail.com",
+    port: 465,
     secure: true,
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
+      user: "testing.jad.123@gmail.com",
+      pass: "diug arnq lift ogkk"
     }
   });
 
   const mailOptions = {
-    from: process.env.SMTP_USER,
+    from: "testing.jad.123@gmail.com",
     to,
     subject: "Generated from UI",
     text: message
