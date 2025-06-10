@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mail Sender</title>
+</head>
+<body>
+  <h2>Send an Email</h2>
+  <form id="emailForm">
+    <input type="email" id="to" placeholder="Receiver Email" required><br><br>
+    <textarea id="message" placeholder="Your message..." required></textarea><br><br>
+    <button type="submit">Send Email</button>
+  </form>
+
+  <script>
+    document.getElementById('emailForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const to = document.getElementById('to').value;
+      const message = document.getElementById('message').value;
+
+      const response = await fetch('/api/sendMail', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ to, message })
+      });
+
+      const result = await response.text();
+      alert(result);
+    });
+  </script>
+</body>
+</html>
